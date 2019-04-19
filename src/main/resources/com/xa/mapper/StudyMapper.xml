@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xa.mapper.StudyMapper">
+
+    <insert id="summary">
+        insert into blog_summary
+        <trim prefix="(" suffix=")" prefixOverrides=",">
+            <if test="title != null and title != ''">
+                ,title
+            </if>
+            <if test="subject != null and subject != ''">
+                ,subject
+            </if>
+            <if test="content != null and content != ''">
+                ,content
+            </if>
+            <if test="uid != null">
+                ,u_id
+            </if>
+
+        </trim>
+
+        <trim prefix="values(" suffix=")" prefixOverrides=",">
+            <if test="title != null and title != ''">
+                ,#{title}
+            </if>
+            <if test="subject != null and subject != ''">
+                ,#{subject}
+            </if>
+            <if test="content != null and content != ''">
+                ,#{content}
+            </if>
+            <if test="uid != null">
+                ,#{uid}
+            </if>
+
+        </trim>
+    </insert>
+    <select id="listAll" resultType="com.xa.pojo.Blog">
+        select * from blog_summary
+    </select>
+</mapper>
